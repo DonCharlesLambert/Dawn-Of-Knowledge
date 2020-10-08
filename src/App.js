@@ -182,7 +182,7 @@ class Quiz extends React.Component{
       console.log("Score", this.state.correctNumber)
       return(
         <div style={{width: '80%'}}>
-            <p style={{textAlign: 'left', margin: 0, marginTop: 5}}>You scored {this.state.correctNumber}</p>
+            <h2 style={{textAlign: 'left', margin: 0, marginTop: 5}}>You scored {this.state.correctNumber} out of {this.questions.length}</h2>
         </div>
       )
     }

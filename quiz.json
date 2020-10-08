@@ -13,12 +13,56 @@
   {
     "book": "Computer Science: An Overview",
     "topic": "0.1 The Role of Algorithms",
-    "question": "What is another algorithm?",
+    "question": "What is program?",
     "answers": [
-        "a process or set of rules to be followed in calculations or other problem-solving operations, especially by a computer.",
-        "a set of rules governing the exchange or transmission of data between devices.",
-        "a story, poem, or picture that can be interpreted to reveal a hidden meaning, typically a moral or political one."
+        "a television show",
+        "a representation of an algorithm in a form compatible with a machine",
+        "a contraction of the term PROG-Random Access Memory"
+    ],
+    "correct": 1
+  },
+  {
+    "book": "Computer Science: An Overview",
+    "topic": "0.1 The Role of Algorithms",
+    "question": "What is programming?",
+    "answers": [
+        "coding in Python or C#",
+        "the process of encoding algorithms in a machine compatible form",
+        "deciding when a television show airs on the BBC at what time"
+    ],
+    "correct": 1
+  },
+  {
+    "book": "Computer Science: An Overview",
+    "topic": "0.1 The Role of Algorithms",
+    "question": "What is Godels Incompletness Theorem?",
+    "answers": [
+        "not all programs can be written",
+        "no circle is truly complete",
+        "there exists some statements whose truth values cannot be determined by algorithmic means"
+    ],
+    "correct": 2
+  },
+  {
+    "book": "Computer Science: An Overview",
+    "topic": "0.2 The Origin of Computing Machines",
+    "question": "Why is an abacus not a computer?",
+    "answers": [
+        "the abacus relies on the human operator for algorithm execution",
+        "the abacus is not electronic",
+        "the abacus has not been ordained by God to be a computer"
+    ],
+    "correct": 2
+  },
+  {
+    "book": "Computer Science: An Overview",
+    "topic": "0.4 Abstraction",
+    "question": "What is abstraction?",
+    "answers": [
+        "the process of considering an entity and its external properties as independent of its associations or attributes",
+        "leaving out important details and focusing on the internal properties of an entity",
+        "removing water from something"
     ],
     "correct": 0
-  }
+  },
 ]
