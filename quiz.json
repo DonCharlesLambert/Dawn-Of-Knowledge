@@ -1,0 +1,24 @@
+[
+  {
+    "book": "Computer Science: An Overview",
+    "topic": "0.1 The Role of Algorithms",
+    "question": "What is an algorithm?",
+    "answers": [
+        "a process or set of rules to be followed in calculations or other problem-solving operations, especially by a computer.",
+        "a set of rules governing the exchange or transmission of data between devices.",
+        "a story, poem, or picture that can be interpreted to reveal a hidden meaning, typically a moral or political one."
+    ],
+    "correct": 0
+  },
+  {
+    "book": "Computer Science: An Overview",
+    "topic": "0.1 The Role of Algorithms",
+    "question": "What is another algorithm?",
+    "answers": [
+        "a process or set of rules to be followed in calculations or other problem-solving operations, especially by a computer.",
+        "a set of rules governing the exchange or transmission of data between devices.",
+        "a story, poem, or picture that can be interpreted to reveal a hidden meaning, typically a moral or political one."
+    ],
+    "correct": 0
+  }
+]
