@@ -186,6 +186,7 @@ class Quiz extends React.Component{
               answerContent={this.questions[this.state.currentQuestion].answers[2]}
             />
           </ul>
+          <button onClick={this.props.list}> Return </button>
           <button onClick={this.nextQuestion}> Next </button>
         </div>
       )
