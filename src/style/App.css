@@ -96,8 +96,15 @@
   justify-content: center;
 }
 
+#question-title{
+  text-align: left;
+  text-transform: uppercase;
+  margin-bottom: 7.5px;
+  margin-top: 0;
+}
+
 .answer-option{
-  font-size: 18px;
+  font-size: 12px;
   margin: 25px 0;
   text-align: center;
 }

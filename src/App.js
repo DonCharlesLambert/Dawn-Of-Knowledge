@@ -18,7 +18,6 @@ class App extends React.Component {
         <Intro/>
         <div className="main-section" style={{height: 0.75 * window.innerHeight}}>
           <BookList/>
-          <Quiz/>
         </div>
         <BookPopUp/>
       </div>
@@ -52,54 +51,64 @@ function Intro(){
 class BookList extends React.Component{
 
   state = {
-    display: 'block'
+    display: true
   }
 
   switchToQuiz = () => {
-    this.setState({display: 'none'})
+    this.setState({display: false})
+  }
+
+  switchToList = () => {
+    this.setState({display: true})
   }
 
   render(){
-    return(
-      <div style={{display: this.state.display}}>
-        <BookItem
-          img={Overview}
-          title={'Computer Science: An Overview'}
-          description={'This book presents an introductory survey of computer science.'}
-          quiz={this.switchToQuiz}
-        />
-        <BookItem
-          img={Logic}
-          title={'Introducing Logic'}
-          description={'Logic is the backbone of Western civilization, holding together its systems of philosophy, science and law.'}
-          quiz={this.switchToQuiz}
-        />
-        <BookItem 
-          img={SuperIntelligence}
-          title={'Superintelligence'}
-          description={'New superintelligence could replace humans as the dominant lifeform on Earth.'}
-          quiz={this.switchToQuiz}
-        />
-        <BookItem
-          img={Algorithms}
-          title={'Algorithms To Live By'}
-          description={'A fascinating exploration of how computer algorithms can be applied to our everyday lives.'}
-          quiz={this.switchToQuiz}
-        />
-        <BookItem
-          img={Ticket}
-          title={'Golden Ticket'}
-          description={'Provides a nontechnical introduction to P-NP, its rich history, and its algorithmic implications'}
-          quiz={this.switchToQuiz}
-        />
-        <BookItem
-          img={Design}
-          title={'Mind Design II'} 
-          description={'Mind design is the endeavor to understand mind (thinking, intellect) in terms of its design (how it is built, how it works).'}
-          quiz={this.switchToQuiz}
-        />
-      </div>
-    )
+    if(this.state.display){
+      return(
+        <div style={{display: this.state.display}}>
+          <BookItem
+            img={Overview}
+            title={'Computer Science: An Overview'}
+            description={'This book presents an introductory survey of computer science.'}
+            quiz={this.switchToQuiz}
+          />
+          <BookItem
+            img={Logic}
+            title={'Introducing Logic'}
+            description={'Logic is the backbone of Western civilization, holding together its systems of philosophy, science and law.'}
+            quiz={this.switchToQuiz}
+          />
+          <BookItem 
+            img={SuperIntelligence}
+            title={'Superintelligence'}
+            description={'New superintelligence could replace humans as the dominant lifeform on Earth.'}
+            quiz={this.switchToQuiz}
+          />
+          <BookItem
+            img={Algorithms}
+            title={'Algorithms To Live By'}
+            description={'A fascinating exploration of how computer algorithms can be applied to our everyday lives.'}
+            quiz={this.switchToQuiz}
+          />
+          <BookItem
+            img={Ticket}
+            title={'Golden Ticket'}
+            description={'Provides a nontechnical introduction to P-NP, its rich history, and its algorithmic implications'}
+            quiz={this.switchToQuiz}
+          />
+          <BookItem
+            img={Design}
+            title={'Mind Design II'} 
+            description={'Mind design is the endeavor to understand mind (thinking, intellect) in terms of its design (how it is built, how it works).'}
+            quiz={this.switchToQuiz}
+          />
+        </div>
+      )
+    }else{
+      return(
+        <Quiz list={this.switchToList}/>
+      )
+    }
   }  
 }
 
@@ -108,15 +117,15 @@ class Quiz extends React.Component{
     super(props)
     this.questions = [
       {
-        "book": "Computer Science: An Overview",
-        "topic": "0.1 The Role of Algorithms",
-        "question": "What is an algorithm?",
-        "answers": [
-            "a process or set of rules to be followed in calculations or other problem-solving operations, especially by a computer.",
-            "a set of rules governing the exchange or transmission of data between devices.",
-            "a story, poem, or picture that can be interpreted to reveal a hidden meaning, typically a moral or political one."
+        "book":"Computer Science: An Overview",
+        "topic":"0.1 The Role of Algorithms",
+        "question":"What is an algorithm?",
+        "answers":[
+          "a process or set of rules to be followed in calculations or other problem-solving operations, especially by a computer.",
+          "a set of rules governing the exchange or transmission of data between devices.",
+          "a story, poem, or picture that can be interpreted to reveal a hidden meaning, typically a moral or political one."
         ],
-        "correct": 0
+        "correct":0
       }
     ]
   }
@@ -125,6 +134,7 @@ class Quiz extends React.Component{
       fetch(`/quiz.json`)
         .then(res => res.json())
           .then(res => this.questions = res)
+            .then(this.setState({display: 'block'}))
   }
 
   nextQuestion = () => {
@@ -152,15 +162,16 @@ class Quiz extends React.Component{
     correctNumber: 0,
     selected: null,
     resultsScreen: false,
+    display: 'none'
   }
 
   render(){
-    if (!this.state.resultsScreen){
+    if (!this.state.resultsScreen && this.state.display != 'none'){
       return(
         <div style={{width: '80%'}}>
           <p style={{textAlign: 'left', margin: 0, marginTop: 5}}>Question {this.state.currentQuestion + 1}</p>
           <p style={{textAlign: 'left', margin: 0}}>{this.questions[this.state.currentQuestion].topic}</p>
-          <h2 style={{textAlign: 'left', textTransform: 'uppercase', marginBottom: 7.5, marginTop: 0}}>{this.questions[this.state.currentQuestion].question}</h2>
+          <h2 id="question-title">{this.questions[this.state.currentQuestion].question}</h2>
           <ul style={{paddingLeft: 7.5}}>
             <AnswerOption
               onAnswerSelected={() => this.changeSelected(0)}
@@ -181,8 +192,13 @@ class Quiz extends React.Component{
     }else{
       console.log("Score", this.state.correctNumber)
       return(
-        <div style={{width: '80%'}}>
-            <h2 style={{textAlign: 'left', margin: 0, marginTop: 5}}>You scored {this.state.correctNumber} out of {this.questions.length}</h2>
+        <div>
+            <h2 style={{textAlign: 'center', margin: 0, marginTop: 5}}>
+              You scored {this.state.correctNumber} out of {this.questions.length}
+            </h2>
+            <button onClick={this.props.list}>
+              Back
+            </button>
         </div>
       )
     }
